@@ -2,7 +2,7 @@
 
 Horizon Landing Page with parallax scrolling effect.
 
-## [Check the live demo]([https://horizon-parallax.netlify.app/](https://amber0322.github.io/parallax-effect-horizon/))
+## [Check the live demo]([https://horizon-parallax.netlify.app/]
 
 ![Screenshot](https://raw.githubusercontent.com/anna-kulyk/parallax-effect-horizon/master/images/horizon.jpg)
 
