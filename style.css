@@ -55,11 +55,11 @@ html {
 
 .player {
     width: 40%;      /* 只佔螢幕寬度的 40% */
-    max-width: 400px; /* 在大螢幕上也不要太大 */
+    max-width: 600px; /* 在大螢幕上也不要太大 */
     transform: translate(-70%, 10%);
     position: absolute;
     bottom: 10%;     /* 距離底部 10% */
-    right: 5%;       /* 偏向右側 */
+    right: 20%;       /* 偏向右側 */
 }
 
 .main {
