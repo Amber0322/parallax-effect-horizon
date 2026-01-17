@@ -66,37 +66,6 @@ window.addEventListener('load', () => {
     
     stickyObserver.observe(document.querySelector('header'));
     
-    //=============================================================================================
-
-    let stickyObserver = new IntersectionObserver(function(entries) {
-
-        entries.forEach(entry => {
-            let main = document.querySelector('.main');
-            let parallax = document.querySelector('.parallax');
-            let parallaxEelements = document.querySelectorAll('.parallax__element');
-
-            if(!entry.isIntersecting && entry.boundingClientRect.y <= 0) {
-                parallax.style.position = 'absolute';
-                parallax.style.top = '100vh';
-                parallaxEelements.forEach(element => {
-                    element.style.position = 'absolute';
-                })
-                main.style.position = 'absolute';
-                main.style.top = '100vh';
-            }
-            else {
-                parallax.style.position = 'none';
-                parallax.style.top = 'none';
-                parallaxEelements.forEach(element => {
-                    element.style.position = 'fixed';
-                })
-                main.style.position = 'relative';
-                main.style.top = 'none';
-            }
-        });
-    }, { threshold: [0] });
-    
-    stickyObserver.observe(document.querySelector('header'));
 
     //=============================================================================================
 
