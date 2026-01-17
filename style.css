@@ -7,12 +7,10 @@ html {
     scroll-behavior: smooth;
 }
 
+/* 基礎包裝層 */
 .wrapper {
-    width: 100%;
-    height: 100%;
     position: relative;
-    top: 0;
-    left: 0;
+    width: 100%;
 }
 
 .container {
@@ -21,15 +19,26 @@ html {
     padding: 0px 15px;
 }
 
+/* 視差區域：固定在背景 */
 .parallax {
-    height: 100vh;
+    position: fixed; /* 關鍵：讓它固定在視窗 */
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100vh;
+    z-index: 1; /* 位於底層 */
     overflow: hidden;
 }
-
+/* 圖片的基礎定位 */
 .parallax__element {
-    position: fixed;
-    pointer-events: none;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateX(-50%); /* 初始水平置中 */
+    will-change: transform; /* 效能優化 */
 }
 .bg {
     height: 100%;
@@ -63,11 +72,16 @@ html {
     right: 20%;       /* 偏向右側 */
 }
 
+/* 內容區域：讓它蓋過視差圖層捲上來 */
 .main {
     position: relative;
+    z-index: 10;        /* 關鍵：層級必須高於 parallax */
+    margin-top: 100vh;  /* 關鍵：空出第一屏的空間給視差圖 */
+    background-color: white; /* 確保背景是不透明的，才能蓋住底層圖 */
     width: 100%;
-    overflow: hidden;
+    min-height: 100vh;
 }
+
 
 .header {
     position: absolute;
@@ -218,6 +232,17 @@ html {
     align-items: center;
 }
 
+/* 內容顯現動畫 */
+.content__text, .item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.content__text.visible, .item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 .content__text {
     max-width: max(70vw, 800px);
     min-height: 1px;
