@@ -1,18 +1,19 @@
+
 window.addEventListener('load', () => {
 
-    // ======================== 1. 視差滾動邏輯 ========================
-    window.addEventListener('scroll', () => {
-        let screenWidth = window.innerWidth; // 建議用 innerWidth
-        if (screenWidth <= 900) return;
+    //==============================================Parallax====================================================
 
-        let scrollValue = window.scrollY;
-        let parallax = document.querySelector('.parallax');
-        let parallaxHeight = parallax.offsetHeight;
-        
+    window.addEventListener('scroll', () => {
+        let screenWidth = window.outerWidth;
+        if (screenWidth <= 900) return;
+
+        let scrollValue = window.scrollY;
+        let parallaxHeight = document.querySelector('.parallax').offsetHeight;
+        let parallaxScrollPercent = scrollValue / parallaxHeight * 100;
+
         // 計算滾動進度 (0 到 1)
         let scrollPercent = Math.min(scrollValue / parallaxHeight, 1);
-
-        if (scrollValue > parallaxHeight) return;
+        if (scrollValue > parallaxHeight) return;
 
         // --- 遠景: 雲 (移動最慢，輕微放大) ---
         let cloud = document.querySelector('.cloud');
@@ -35,8 +36,8 @@ window.addEventListener('load', () => {
             player.style.transform = `translate(-45%, ${scrollValue * -0.15}px) scale(${1 + scrollPercent * 0.2})`;
         }
     });
-
-    // ======================== 2. 定位切換邏輯 (修正屬性值) ========================
+    
+// ======================== 2. 定位切換邏輯 (修正屬性值) ========================
     let stickyObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             let main = document.querySelector('.main');
@@ -56,7 +57,7 @@ window.addEventListener('load', () => {
                 parallax.style.position = ''; // 清除 inline style
                 parallax.style.top = '';
                 parallaxElements.forEach(el => el.style.position = 'fixed');
-                
+
                 main.style.position = 'relative';
                 main.style.top = '';
             }
@@ -64,7 +65,76 @@ window.addEventListener('load', () => {
     }, { threshold: [0] });
     
     stickyObserver.observe(document.querySelector('header'));
+    
+    //=============================================================================================
 
-    // ======================== 3. 其他內容載入動畫 (保留您的邏輯) ========================
-    // ...內容載入與 Item 載入的 Observer 邏輯保持不變...
-});
+    let stickyObserver = new IntersectionObserver(function(entries) {
+
+        entries.forEach(entry => {
+            let main = document.querySelector('.main');
+            let parallax = document.querySelector('.parallax');
+            let parallaxEelements = document.querySelectorAll('.parallax__element');
+
+            if(!entry.isIntersecting && entry.boundingClientRect.y <= 0) {
+                parallax.style.position = 'absolute';
+                parallax.style.top = '100vh';
+                parallaxEelements.forEach(element => {
+                    element.style.position = 'absolute';
+                })
+                main.style.position = 'absolute';
+                main.style.top = '100vh';
+            }
+            else {
+                parallax.style.position = 'none';
+                parallax.style.top = 'none';
+                parallaxEelements.forEach(element => {
+                    element.style.position = 'fixed';
+                })
+                main.style.position = 'relative';
+                main.style.top = 'none';
+            }
+        });
+    }, { threshold: [0] });
+    
+    stickyObserver.observe(document.querySelector('header'));
+
+    //=============================================================================================
+
+    let contentTextObserver = new IntersectionObserver(function(entries) {
+
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+            else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, { threshold: [0] });
+    
+    contentTextObserver.observe(document.querySelector('.content__text'));
+
+    //=============================================================================================
+
+    let contentItems = document.querySelectorAll('.item')
+    let contentItemsObserver = new IntersectionObserver(function(entries) {
+
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                let timeout = 0;
+                contentItems.forEach(item => {
+                    setTimeout(() => {item.classList.add('visible');}, timeout);
+                    timeout += 500;
+                })
+            }
+            else {
+                contentItems.forEach(item => {
+                    item.classList.remove('visible');
+                })
+            }
+        });
+    }, { threshold: [0] });
+    
+    contentItemsObserver.observe(document.querySelector('.content__items'));
+
+})
