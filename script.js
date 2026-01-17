@@ -12,21 +12,21 @@ window.addEventListener('load', () => {
 
         if (scrollValue > parallaxHeight) return;
 
-        let mountain = document.querySelector('.mountain');
-        let mountainWidth = screenWidth;
-        mountain.style.width = `${mountainWidth + (screenWidth * 0.5 * parallaxScrollPercent / 100)}px`;
-        mountain.style.transform = `translate(-${ 50 * parallaxScrollPercent / 100 }%, 0%)`;
-        mountain.style.left = `${50 * parallaxScrollPercent / 100}%`
+        let stadium = document.querySelector('.stadium');
+        let stadiumWidth = screenWidth;
+        stadium.style.width = `${stadiumWidth + (screenWidth * 0.5 * parallaxScrollPercent / 100)}px`;
+        stadium.style.transform = `translate(-${ 50 * parallaxScrollPercent / 100 }%, 0%)`;
+        stadium.style.left = `${50 * parallaxScrollPercent / 100}%`
 
         let village = document.querySelector('.village');
         let villageWidth = screenWidth * 2;
         village.style.width = `${villageWidth - (screenWidth * 0.73 * parallaxScrollPercent / 100)}px`;
         village.style.transform = `translate(-${ 53 - (3 * parallaxScrollPercent / 100) }%, ${ 17 - (7 * parallaxScrollPercent / 100) }%)`;
 
-        let deer = document.querySelector('.deer');
-        let deerWidth = screenWidth * 1.7;
-        deer.style.width = `${deerWidth - (screenWidth * 0.55 * parallaxScrollPercent / 100)}px`;
-        deer.style.transform = `translate(-${ 45 + (5 * parallaxScrollPercent / 100) }%, 10%)`;
+        let player = document.querySelector('.player');
+        let playerWidth = screenWidth * 1.7;
+        player.style.width = `${playerWidth - (screenWidth * 0.55 * parallaxScrollPercent / 100)}px`;
+        player.style.transform = `translate(-${ 45 + (5 * parallaxScrollPercent / 100) }%, 10%)`;
     })
 
     //=============================================================================================
