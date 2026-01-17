@@ -45,11 +45,12 @@ html {
 .stadium {
     width: 100%;
     top: 15%;
+    bottom: 0;
 }
 .court {
     width: 100%;
     transform: translate(-53%, 17%);
-    bottom: 0;
+    bottom: 5%;
     left: 50%;
 }
 
@@ -58,7 +59,7 @@ html {
     max-width: 600px; /* 在大螢幕上也不要太大 */
     transform: translate(-70%, 10%);
     position: absolute;
-    bottom: 10%;     /* 距離底部 10% */
+    bottom: 5%;     /* 距離底部 10% */
     right: 20%;       /* 偏向右側 */
 }
 
