@@ -12,16 +12,16 @@ window.addEventListener('load', () => {
 
         if (scrollValue > parallaxHeight) return;
 
-        let stadium = document.querySelector('.stadium');
-        let stadiumWidth = screenWidth;
-        stadium.style.width = `${stadiumWidth + (screenWidth * 0.5 * parallaxScrollPercent / 100)}px`;
-        stadium.style.transform = `translate(-${ 50 * parallaxScrollPercent / 100 }%, 0%)`;
-        stadium.style.left = `${50 * parallaxScrollPercent / 100}%`
+        let cloud = document.querySelector('.cloud');
+        let cloudWidth = screenWidth;
+        cloud.style.width = `${cloudWidth + (screenWidth * 0.5 * parallaxScrollPercent / 100)}px`;
+        cloud.style.transform = `translate(-${ 50 * parallaxScrollPercent / 100 }%, 0%)`;
+        cloud.style.left = `${50 * parallaxScrollPercent / 100}%`
 
-        let village = document.querySelector('.village');
-        let villageWidth = screenWidth * 2;
-        village.style.width = `${villageWidth - (screenWidth * 0.73 * parallaxScrollPercent / 100)}px`;
-        village.style.transform = `translate(-${ 53 - (3 * parallaxScrollPercent / 100) }%, ${ 17 - (7 * parallaxScrollPercent / 100) }%)`;
+        let stadium = document.querySelector('.stadium');
+        let stadiumWidth = screenWidth * 2;
+        stadium.style.width = `${stadiumWidth - (screenWidth * 0.73 * parallaxScrollPercent / 100)}px`;
+        stadium.style.transform = `translate(-${ 53 - (3 * parallaxScrollPercent / 100) }%, ${ 17 - (7 * parallaxScrollPercent / 100) }%)`;
 
         let player = document.querySelector('.player');
         let playerWidth = screenWidth * 1.7;
